@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -136,13 +137,12 @@ export function Hero() {
             <Button
               size="lg"
               className="w-full sm:w-auto gap-2 bg-primary hover:bg-primary/90 glow"
-              disabled
+              asChild
             >
-              <Monitor className="w-5 h-5" />
-              Download for Windows
-              <Badge variant="secondary" className="ml-2 text-xs">
-                Coming Soon
-              </Badge>
+              <a href="/selective-blur.exe" download>
+                <Monitor className="w-5 h-5" />
+                Download for Windows
+              </a>
             </Button>
             <Dialog>
               <DialogTrigger asChild>
@@ -202,13 +202,15 @@ export function Hero() {
             className="relative animate-float"
           >
             <div className="glass rounded-2xl p-4 shadow-2xl">
-              <div className="bg-gradient-to-br from-card to-muted rounded-xl aspect-video flex items-center justify-center overflow-hidden">
-                <div className="text-center">
-                  <Shield className="w-16 h-16 mx-auto mb-4 text-primary/50" />
-                  <p className="text-muted-foreground">
-                    App Preview Coming Soon
-                  </p>
-                </div>
+              <div className="rounded-xl aspect-video overflow-hidden relative">
+                <Image
+                  src="/priva-1.jpg"
+                  alt="Priva App - Video Editor Interface"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  priority
+                />
               </div>
             </div>
             {/* Glow effect behind mockup */}

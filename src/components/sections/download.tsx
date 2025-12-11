@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Monitor, Apple, Cpu, Mail, CheckCircle2, Loader2 } from "lucide-react";
+import { Monitor, Apple, Cpu, Mail, CheckCircle2, Loader2, Download as DownloadIcon } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -25,20 +25,23 @@ const platforms = [
   {
     name: "Windows",
     icon: Monitor,
-    status: "coming-soon",
-    label: "Coming Soon",
+    status: "available",
+    label: "Available",
+    downloadUrl: "/selective-blur.exe",
   },
   {
     name: "macOS",
     icon: Apple,
     status: "planned",
     label: "Planned",
+    downloadUrl: null,
   },
   {
     name: "Linux",
     icon: Cpu,
     status: "planned",
     label: "Planned",
+    downloadUrl: null,
   },
 ];
 
@@ -76,8 +79,7 @@ export function Download() {
             Get <span className="gradient-text">Priva</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Be the first to know when Priva launches. Sign up for early access
-            and updates.
+            Download Priva for Windows and start protecting privacy in your videos today.
           </p>
         </motion.div>
 
@@ -97,27 +99,31 @@ export function Download() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 * index }}
-                className="glass rounded-xl p-6 text-center feature-card"
+                className={`glass rounded-xl p-6 text-center feature-card ${
+                  platform.status === "available" ? "ring-2 ring-primary/50" : ""
+                }`}
               >
-                <platform.icon className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                <platform.icon className={`w-12 h-12 mx-auto mb-4 ${
+                  platform.status === "available" ? "text-primary" : "text-muted-foreground"
+                }`} />
                 <h3 className="font-semibold mb-2">{platform.name}</h3>
-                <Badge
-                  variant={
-                    platform.status === "coming-soon" ? "default" : "secondary"
-                  }
-                  className={
-                    platform.status === "coming-soon"
-                      ? "bg-priva-amber text-black"
-                      : ""
-                  }
-                >
-                  {platform.label}
-                </Badge>
+                {platform.status === "available" ? (
+                  <Button asChild size="sm" className="mt-2">
+                    <a href={platform.downloadUrl!} download>
+                      <DownloadIcon className="w-4 h-4 mr-2" />
+                      Download
+                    </a>
+                  </Button>
+                ) : (
+                  <Badge variant="secondary">
+                    {platform.label}
+                  </Badge>
+                )}
               </motion.div>
             ))}
           </div>
 
-          {/* Email Signup Form */}
+          {/* Email Signup Form - for other platforms */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +142,7 @@ export function Download() {
                   Thanks for signing up!
                 </h3>
                 <p className="text-muted-foreground">
-                  We&apos;ll notify you when Priva is ready for download.
+                  We&apos;ll notify you when macOS and Linux versions are ready.
                 </p>
               </motion.div>
             ) : (
@@ -144,10 +150,10 @@ export function Download() {
                 <div className="text-center mb-6">
                   <Mail className="w-10 h-10 mx-auto mb-4 text-primary" />
                   <h3 className="text-xl font-semibold mb-2">
-                    Get Notified When Available
+                    Get Notified for macOS & Linux
                   </h3>
                   <p className="text-muted-foreground">
-                    Enter your email to receive early access and updates.
+                    Enter your email to receive updates when new platforms are available.
                   </p>
                 </div>
 

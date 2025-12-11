@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -14,44 +15,27 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Shield, Users, Layers, Eye, Camera, Settings } from "lucide-react";
 
 const screenshots = [
   {
-    title: "Face Enrollment",
-    description: "Multi-pose capture for accurate recognition",
-    icon: Camera,
-    gradient: "from-blue-500/20 to-purple-500/20",
-  },
-  {
     title: "Video Editor",
-    description: "Professional editing workspace with timeline",
-    icon: Layers,
-    gradient: "from-purple-500/20 to-pink-500/20",
+    description: "Professional editing workspace with timeline and preview",
+    image: "/priva-1.jpg",
   },
   {
     title: "Face Library",
-    description: "Manage enrolled faces and permissions",
-    icon: Users,
-    gradient: "from-pink-500/20 to-orange-500/20",
+    description: "Manage enrolled faces and recognition settings",
+    image: "/priva-2.jpg",
+  },
+  {
+    title: "Face Enrollment",
+    description: "Multi-pose capture for accurate recognition",
+    image: "/priva-3.jpg",
   },
   {
     title: "Blur Preview",
-    description: "Real-time preview of blur effects",
-    icon: Eye,
-    gradient: "from-orange-500/20 to-yellow-500/20",
-  },
-  {
-    title: "Privacy Settings",
-    description: "Customize blur intensity and effects",
-    icon: Settings,
-    gradient: "from-green-500/20 to-teal-500/20",
-  },
-  {
-    title: "Protected Export",
-    description: "Export with all privacy settings applied",
-    icon: Shield,
-    gradient: "from-teal-500/20 to-blue-500/20",
+    description: "Real-time preview of blur effects applied",
+    image: "/priva-4.jpg",
   },
 ];
 
@@ -96,7 +80,7 @@ export function Screenshots() {
               {screenshots.map((screenshot, index) => (
                 <CarouselItem
                   key={index}
-                  className="pl-4 md:basis-1/2 lg:basis-1/3"
+                  className="pl-4 md:basis-1/2"
                 >
                   <Dialog>
                     <DialogTrigger asChild>
@@ -105,11 +89,15 @@ export function Screenshots() {
                         whileTap={{ scale: 0.98 }}
                         className="cursor-pointer"
                       >
-                        <div className="glass rounded-xl p-4 h-full feature-card">
-                          <div
-                            className={`aspect-video rounded-lg bg-gradient-to-br ${screenshot.gradient} flex items-center justify-center mb-4`}
-                          >
-                            <screenshot.icon className="w-12 h-12 text-foreground/50" />
+                        <div className="glass rounded-xl p-3 h-full feature-card">
+                          <div className="aspect-video rounded-lg overflow-hidden bg-muted mb-3 relative">
+                            <Image
+                              src={screenshot.image}
+                              alt={screenshot.title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
                           </div>
                           <h3 className="font-semibold mb-1">
                             {screenshot.title}
@@ -120,19 +108,15 @@ export function Screenshots() {
                         </div>
                       </motion.div>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl">
-                      <div
-                        className={`aspect-video rounded-lg bg-gradient-to-br ${screenshot.gradient} flex items-center justify-center`}
-                      >
-                        <div className="text-center">
-                          <screenshot.icon className="w-20 h-20 mx-auto mb-4 text-foreground/50" />
-                          <h3 className="text-xl font-semibold mb-2">
-                            {screenshot.title}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            Screenshot coming soon
-                          </p>
-                        </div>
+                    <DialogContent className="max-w-5xl p-2">
+                      <div className="relative aspect-video w-full">
+                        <Image
+                          src={screenshot.image}
+                          alt={screenshot.title}
+                          fill
+                          className="object-contain rounded-lg"
+                          sizes="100vw"
+                        />
                       </div>
                     </DialogContent>
                   </Dialog>
