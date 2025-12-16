@@ -35,8 +35,8 @@ const platforms = [
     icon: Monitor,
     status: "available",
     label: "Available",
-    // downloadUrl: "/selective-blur.exe",
-    downloadUrl: "/Priva_0.1.0_x64-setup.exe",
+    downloadUrl: "https://github.com/justrrio/priva/releases/download/beta/Priva_0.1.0_x64-setup.exe",
+    // downloadUrl: "/Priva_0.1.0_x64-setup.exe",
   },
   {
     name: "macOS",
