@@ -139,7 +139,7 @@ export function Hero() {
               className="w-full sm:w-auto gap-2 bg-primary hover:bg-primary/90 glow"
               asChild
             >
-              <a href="https://github.com/justrrio/priva/releases/download/beta/Priva_0.1.0_x64-setup.exe" download>
+              <a href="https://github.com/justrrio/priva-landing-page/releases/download/beta/Priva_0.1.0_x64-setup.exe" download>
                 <Monitor className="w-5 h-5" />
                 Download for Windows
               </a>
