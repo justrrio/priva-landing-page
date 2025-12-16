@@ -139,7 +139,7 @@ export function Hero() {
               className="w-full sm:w-auto gap-2 bg-primary hover:bg-primary/90 glow"
               asChild
             >
-              <a href="/selective-blur.exe" download>
+              <a href="/Priva_0.1.0_x64-setup.exe" download>
                 <Monitor className="w-5 h-5" />
                 Download for Windows
               </a>

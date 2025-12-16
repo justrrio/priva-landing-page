@@ -15,7 +15,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Monitor, Apple, Cpu, Mail, CheckCircle2, Loader2, Download as DownloadIcon } from "lucide-react";
+import {
+  Monitor,
+  Apple,
+  Cpu,
+  Mail,
+  CheckCircle2,
+  Loader2,
+  Download as DownloadIcon,
+} from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -27,7 +35,8 @@ const platforms = [
     icon: Monitor,
     status: "available",
     label: "Available",
-    downloadUrl: "/selective-blur.exe",
+    // downloadUrl: "/selective-blur.exe",
+    downloadUrl: "/Priva_0.1.0_x64-setup.exe",
   },
   {
     name: "macOS",
@@ -79,7 +88,8 @@ export function Download() {
             Get <span className="gradient-text">Priva</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Download Priva for Windows and start protecting privacy in your videos today.
+            Download Priva for Windows and start protecting privacy in your
+            videos today.
           </p>
         </motion.div>
 
@@ -100,12 +110,18 @@ export function Download() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 * index }}
                 className={`glass rounded-xl p-6 text-center feature-card ${
-                  platform.status === "available" ? "ring-2 ring-primary/50" : ""
+                  platform.status === "available"
+                    ? "ring-2 ring-primary/50"
+                    : ""
                 }`}
               >
-                <platform.icon className={`w-12 h-12 mx-auto mb-4 ${
-                  platform.status === "available" ? "text-primary" : "text-muted-foreground"
-                }`} />
+                <platform.icon
+                  className={`w-12 h-12 mx-auto mb-4 ${
+                    platform.status === "available"
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                />
                 <h3 className="font-semibold mb-2">{platform.name}</h3>
                 {platform.status === "available" ? (
                   <Button asChild size="sm" className="mt-2">
@@ -115,9 +131,7 @@ export function Download() {
                     </a>
                   </Button>
                 ) : (
-                  <Badge variant="secondary">
-                    {platform.label}
-                  </Badge>
+                  <Badge variant="secondary">{platform.label}</Badge>
                 )}
               </motion.div>
             ))}
@@ -153,7 +167,8 @@ export function Download() {
                     Get Notified for macOS & Linux
                   </h3>
                   <p className="text-muted-foreground">
-                    Enter your email to receive updates when new platforms are available.
+                    Enter your email to receive updates when new platforms are
+                    available.
                   </p>
                 </div>
 
